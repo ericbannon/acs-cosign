@@ -27,9 +27,9 @@ jobs:
       - name: Write signing key to disk
         run: echo "${{ secrets.COSIGN_PRIVATE_KEY }}" > cosign.key
 
-   #   - name: Sign container image
-     #   run: |
-     #     cosign sign --key cosign.key ${{ env.FULL_IMAGE_NAME }}
-     #   env:
-      #    COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
-       #   FULL_IMAGE_NAME: quay.io/ebannon/log4japp:nonvulnerable 
+      - name: Sign container image
+        run: |
+          cosign sign --key cosign.key ${{ env.FULL_IMAGE_NAME }}
+        env:
+          COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
+          FULL_IMAGE_NAME: quay.io/ebannon/log4japp:nonvulnerable 
