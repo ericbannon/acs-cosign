@@ -24,12 +24,12 @@ jobs:
       - name: cosign-installer
         uses: sigstore/cosign-installer@v2.0.0
 
-      - name: Write signing key to disk (only needed for `cosign sign --key`)
+      - name: Write signing key to disk
         run: echo "${{ secrets.COSIGN_PRIVATE_KEY }}" > cosign.key
 
       - name: Sign container image
         run: |
-          cosign sign --key cosign.key /
+          cosign sign --key cosign.key \
           ${{ env.FULL_IMAGE_NAME }}
         env:
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
