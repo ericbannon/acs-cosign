@@ -28,7 +28,8 @@ jobs:
 
       - name: Sign container image
         run: |
-          cosign sign --key cosign.key ${{ env.FULL_IMAGE_NAME }}
+          cosign sign --key cosign.key \ 
+          ${{ env.FULL_IMAGE_NAME }}
         env:
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
           FULL_IMAGE_NAME: quay.io/ebannon/log4japp:nonvulnerable
