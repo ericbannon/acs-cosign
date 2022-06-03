@@ -1,0 +1,32 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    steps:
+    ### Docker build steps here
+    
+      - name: cosign-installer
+        uses: sigstore/cosign-installer@v2.0.0
+
+      - name: Write signing key to disk (only needed for `cosign sign --key`)
+        run: echo "${{ secrets.COSIGN_PRIVATE_KEY}}" > cosign.key
+
+      - name: Sign container image
+        run: |
+          cosign sign --key cosign.key ${{ env.REGISTRY }}//${{ env.FULL_IMAGE_NAME }}
+        env:
+          COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
