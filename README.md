@@ -38,7 +38,7 @@ You should now see 5 secrets saved under your GitHub actions settings in the rep
 Modify the IMAGE file with the image in your registry you want to sign and push to the main branch to kick off the CI build. Note: This could be done in a PR for review purposes of an image signing request from the end user in the chain of custody for the image. 
 
 
-## OPTIONAL (Add an ACS Image Check for Policy Violations)
+### OPTIONAL (Add an ACS Image Check for Policy Violations)
 
-Step 1: Create a secret called CENTRAL, where this is your central endpoint (minus port)
-Step 2: Create a secret called ROX_API_TOKEN, where this is an API token generated from Central
+* Step 1: Create a secret called CENTRAL, where this is your central endpoint (minus port)
+* Step 2: Create a secret called ROX_API_TOKEN, where this is an API token generated from Central
