@@ -20,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
     
       - name: cosign-installer
         uses: sigstore/cosign-installer@v2.0.0
@@ -35,7 +37,7 @@ jobs:
           
       - name: Set env variable for image
         run: | 
-          echo "IMAGE_FULL_NAME=$(cat ~/main/IMAGE)" >> $GITHUB_ENV
+          echo "IMAGE_FULL_NAME=$(cat ./IMAGE)" >> $GITHUB_ENV
 
       - name: Sign container image
         run: |
