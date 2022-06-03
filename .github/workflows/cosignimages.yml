@@ -32,10 +32,13 @@ jobs:
         shell: bash
         env:
           KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
+          
+      - name: Set env variable for image
+        run: | 
+          echo "IMAGE_FULL_NAME=$(cat ~/IMAGE)" >> $GITHUB_ENV
 
       - name: Sign container image
         run: |
           cosign sign --key cosign.key ${{ env.FULL_IMAGE_NAME }}
         env:
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
-          FULL_IMAGE_NAME: $(cat image.txt)
