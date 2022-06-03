@@ -35,7 +35,7 @@ jobs:
           
       - name: Set env variable for image
         run: | 
-          echo "IMAGE_FULL_NAME=$(cat .IMAGE)" >> $GITHUB_ENV
+          echo "IMAGE_FULL_NAME=$(cat ~/main/IMAGE)" >> $GITHUB_ENV
 
       - name: Sign container image
         run: |
