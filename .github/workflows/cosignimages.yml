@@ -31,4 +31,4 @@ jobs:
           cosign sign --key cosign.key ${{ env.FULL_IMAGE_NAME }}
         env:
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
-          FULL_IMAGE_NAME: quay.io/ebannon/log4japp:nonvulnerable 
+          FULL_IMAGE_NAME: gcr.io/rox-se/srox/netflow:latest 
