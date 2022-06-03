@@ -38,4 +38,4 @@ jobs:
           cosign sign --key cosign.key ${{ env.FULL_IMAGE_NAME }}
         env:
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
-          FULL_IMAGE_NAME: quay.io/ebannon/ubuntu:latest
+          FULL_IMAGE_NAME: $(cat ./image.txt)
