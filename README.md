@@ -1,6 +1,6 @@
 # Overview 
 
-A simple GitHub action example for cosigning images in authenticated Quay registries (Note: can be modified with any OCI compliant registry by adjusting the docker login task under the github action). 
+A simple GitHub action example for cosigning images in authenticated Quay registries (Note: can be modified with any OCI compliant registry by adjusting the docker login task under the github action). The action works by taking the input from the IMAGE file and running the cosign installer, proceeded by the signing of the image and pushing of signature to the registry. 
 
 ## Instructions
 
