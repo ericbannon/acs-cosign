@@ -24,15 +24,13 @@ jobs:
       - name: cosign-installer
         uses: sigstore/cosign-installer@v2.0.0
 
-      - name: Write signing key to disk
-        run: 'echo "$KEY" > cosign.key'
-        shell: bash
-        env:
-          KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
+      - name: Write signing key to disk (only needed for `cosign sign --key`)
+        run: echo "${{ secrets.COSIGN_PRIVATE_KEY }}" > cosign.key
 
       - name: Sign container image
         run: |
-          cosign sign --key cosign.key ${{ env.FULL_IMAGE_NAME }}
+          cosign sign --key cosign.key /
+          ${{ env.FULL_IMAGE_NAME }}
         env:
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
           FULL_IMAGE_NAME: quay.io/ebannon/log4japp:nonvulnerable 
