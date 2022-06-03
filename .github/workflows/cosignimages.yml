@@ -44,3 +44,10 @@ jobs:
           cosign sign --key cosign.key ${{ env.IMAGE_FULL_NAME }}
         env:
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
+          
+      - name: Check image for security violations
+        env: 
+          CENTRAL: ${{ secrets.CENTRAL }}
+          ROX_API_TOKEN: ${{ secrets.ROX_API_TOKEN }}
+          IMAGE: ${{ env.IMAGE_FULL_NAME }}
+        run: ./imagecheck.sh
